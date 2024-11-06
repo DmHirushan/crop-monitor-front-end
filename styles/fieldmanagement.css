@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #370e0e;
+    
+    
+    height: 100vh;
+    margin: 0;
+}
+
+.navbar-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    border: 1px solid black;
+    width: 80%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    height: 80vh; /* Set height based on viewport height */
+    margin-top: 20px; /* Adds some spacing above */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Adds shadow effect */
+    transform: translateY(-10px); /* Lifts the container slightly */
+    border-radius: 8px; /* Optional: rounds the corners */
+    background-color: white; /* Adds background for contrast */
+}
+
+
+.table-container,
+.form-container {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+#field-table thead th{
+    font-size: 20px;
+    padding-left: 20px;
+    color: rgb(28, 207, 28);
+}
