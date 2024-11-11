@@ -1,0 +1,134 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+.main-container{
+    font-family: 'Lora', sans-serif; /* Replace 'Roboto' with your chosen font */
+}
+
+
+.main-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-container {
+    font-family: 'Lora', sans-serif; /* Replace 'Roboto' with your chosen font */
+    font-family: 'Lora', sans-serif;
+    display: grid;
+    grid-template-columns: 40% 60%;
+    border: 1px solid black;
+    margin: 30px;
+    height: 600px;
+    /* background-color: rgb(208, 233, 215); */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
+}
+
+.form-container{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.date-time-container{
+    margin-top: -8px;
+    margin-left: 8px;
+    font-size: 15px;
+    color: rgb(82, 86, 90);
+}
+
+.form{
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.textfield{
+    background-color: rgb(219, 248, 214);
+    border-radius: 20px;
+}
+
+.crop-scientific-desc{
+    margin-left: 28%;
+}
+
+#scientificname-textfield{
+    margin-left: 8%;
+}
+
+.textfield{
+    margin-bottom: 20px;
+}
+
+#cropseason-textfield{
+    margin-left: 8%;
+}
+
+.crop-season-desc{
+    margin-left: 30.8%;
+}
+
+#options{
+    background-color: rgb(219, 248, 214);;
+    border-radius: 20px;
+    margin-top: 5px;
+    margin-bottom: 50px;
+    width: 28%;
+}
+
+/* Hide the actual file input */
+#fileUpload {
+    display: none;
+}
+
+/* Style for the custom file upload button */
+.custom-file-upload {
+    background-color: rgb(219, 248, 214);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    color: white;
+    width: 29%;
+    height: 100px;
+    border: 1px solid green;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Optional styling for selected file name display */
+#fileName {
+    margin-left: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.btn-save-crop {
+    background-color: rgb(182, 240, 172);
+    border-radius: 10px;
+    margin-top: 28px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none; /* Optional: Remove default button border */
+}
+
+.btn-save-crop:hover {
+    transform: translateY(-5px); /* Moves the button slightly up */
+    box-shadow: 0px 4px 8px rgba(0, 255, 0, 0.5); /* Adds a soft glow */
+}
+
+th{
+    width: 130px;
+    color: red;
+}
+
+td{
+    background-color: rgb(202, 249, 202);
+}
+
+.table-container{
+    margin-top: 10px;
+}
+
+.icon-space{
+    margin-right: 15%;
+}

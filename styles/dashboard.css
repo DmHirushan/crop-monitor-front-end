@@ -1,5 +1,15 @@
-.navbar-container{
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+.main-container{
+    font-family: 'Lora', sans-serif; /* Replace 'Roboto' with your chosen font */
+}
+
+.main-container{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.nav-link{
+    font-size: 200px;
 }
