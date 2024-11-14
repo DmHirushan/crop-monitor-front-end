@@ -1,4 +1,4 @@
-import { getAll } from "../model/CropModel.js";
+import { deleteCrop, getAll } from "../model/CropModel.js";
 
 updateDateTime();
 setInterval(updateDateTime, 1000);
@@ -20,62 +20,91 @@ export function getAllCrops() {
 function reloadTable(crops) {
   let $tableBody = $("#crop-table-body");
   console.log(crops);
+
   // Clear the table body before adding new rows
   $tableBody.empty();
 
   $.each(crops, function (index, crop) {
     let $newRow = $("<tr>").appendTo($tableBody);
 
-    // Make row clickable
-    $newRow.on("click", function () {
-      console.log(`Row clicked for field: ${crop.cropCommonName}`);
-      // console.log(crops.image1);
-      // $("#img1").attr("src", base64ToImageURL(crops.image1));
-    });
-
+    // Set row data
     $("<td>").text(crop.cropCommonName).appendTo($newRow);
     $("<td>").text(crop.cropScientificName).appendTo($newRow);
-    $("<td>").text(crop.category).appendTo($newRow);
-    $("<td>").text(crop.cropSeason).appendTo($newRow);
-    $("<td>").text(crop.fieldName).appendTo($newRow);
-    $("<td>");
+    $("<td>").addClass("th-td-space").text(crop.category).appendTo($newRow);
+    $("<td>").addClass("th-td-space").text(crop.cropSeason).appendTo($newRow);
+    $("<td>").addClass("th-td-space").text(crop.fieldName).appendTo($newRow);
+
+    // Add edit and delete icons
     $("<td>")
       .append(
         $("<a>")
-          .attr("href", "#") // Set link behavior
+          .attr("href", "#")
           .on("click", function (e) {
-            e.preventDefault(); // Prevent default link behavior
-            openPopup(); // Call a function to open the popup
+            e.preventDefault();
+            openPopup(); // Call a function to open the popup for edit
           })
-          .append($("<i>").addClass("fa-solid fa-pen-to-square icon-space")) // Add Font Awesome icon
-          .append(
-            $("<a>")
-              .attr("href", "#") // Set link behavior
-              .on("click", function (e) {
-                e.preventDefault(); // Prevent default link behavior
-                openPopup(); // Call a function to open the popup
-              })
-              .append($("<i>").addClass("fa-solid fa-delete-left")) // Add Font Awesome icon
-          )
+          .append($("<i>").addClass("fa-solid fa-pen-to-square icon-space icon-padding-left")) // Edit icon
+      )
+      .append(" ")
+      .append(
+        $("<a>")
+          .attr("href", "#")
+          .on("click", function (e) {
+            e.preventDefault();
+            deleteCropWithCropCode(crop.cropCode);
+          })
+          .append($("<i>").addClass("fa-solid fa-delete-left")) // Delete icon
       )
       .appendTo($newRow);
+
+    // Attach a click event handler to load the image when the row is clicked
+    $newRow.on("click", function () {
+      console.log(`Row clicked for field: ${crop.cropCommonName}`);
+
+      // Convert if it's base64, or use directly if it's a URL
+      const imageUrl = base64ToImageURL(crop.cropImage); 
+
+      // Set the `src` attribute of the image inside `.image-container`
+      $("#loaded-crop-image").attr("src", imageUrl);
+    });
+  });
+}
+
+// Helper function if your image data is in base64
+function base64ToImageURL(base64Data) {
+  return `data:image/png;base64,${base64Data}`;
+}
+
+function deleteCropWithCropCode(cropCode) {
+  const userConfirmation = confirm('Are you sure you want to delete this crop?');
   
-  })};
+  if (userConfirmation) {
+    // User clicked "OK" (Yes)
+    deleteCrop(cropCode)
+      .then((message) => {
+        console.log(message); // "Crop deleted successfully"
+        getAllCrops();
+      })
+      .catch((error) => {
+        console.error('Crop deletion failed:', error);
+      });
+  } else {
+    // User clicked "Cancel" (No)
+    console.log('Crop deletion canceled');
+  }
+}
 
 
-// function base64ToImageURL(base64Image) {
-//   return `data:image/jpeg;base64,${base64Image}`;
-// }
+function openPopup() {
+  $("#popupModal").show();
+}
 
-// Optional: Converting Base64 to Byte Array (if needed)
-// function base64ToByteArray(base64Image) {
-//   const binaryString = window.atob(base64Image);
-//   const length = binaryString.length;
-//   const byteArray = new Uint8Array(length);
+function deletePopup() {
+  $("#popupModal").show();
+}
 
-//   for (let i = 0; i < length; i++) {
-//     byteArray[i] = binaryString.charCodeAt(i);
-//   }
+// Close the modal when the close button is clicked
+$(document).on("click", ".close-btn", function () {
+  $("#popupModal").hide();
+});
 
-//   return byteArray;
-// }

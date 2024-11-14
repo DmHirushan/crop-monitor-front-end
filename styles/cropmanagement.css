@@ -132,3 +132,94 @@ td{
 .icon-space{
     margin-right: 15%;
 }
+
+.icon-padding-left{
+    margin-left: 18%;
+}
+
+.th-td-space{
+    padding-left: 5%;
+}
+
+#crop-table-body tr {
+    transition: transform 0.2s ease-in-out; /* Smooth transition */
+}
+  
+#crop-table-body tr:hover {
+    transform: translateY(-3px); /* Moves the row up slightly */
+    cursor: pointer; /* Changes cursor to pointer on hover */
+}
+  
+
+.image-container{
+    margin-top: 100px;
+}
+
+#loaded-crop-image{
+    width: 40%;
+}
+
+
+#popupModal{
+    font-family: 'Lora', sans-serif;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%; /* Make it full width */
+    height: 100%; /* Make it full height */
+    background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
+}
+
+/* Modal content box */
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the modal */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 70%; /* Set width as 70% of the viewport width */
+    max-width: 500px; /* Max width for large screens */
+    max-height: 70%; /* Max height for large screens */
+    overflow-y: auto; /* Allow scroll if content overflows */
+}
+
+/* Close button */
+.close-btn {
+    float: right;
+    cursor: pointer;
+}
+
+.update-crop-scientific-desc{
+    padding-left: 4%;
+}
+
+/* .btn-container{
+    display: flex;
+    justify-content: end;
+} */
+
+.btn-update-crop{
+    font-size: 12px;
+    background-color: rgb(182, 240, 172);
+    border-radius: 10px;
+    margin-top: 22px;
+    padding: 10px 20px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none; /* Optional: Remove default button border */
+}
+
+.btn-update-crop:hover {
+    transform: translateY(-5px); /* Moves the button slightly up */
+    box-shadow: 0px 4px 8px rgba(0, 255, 0, 0.5); /* Adds a soft glow */
+}
+
+

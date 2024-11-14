@@ -79,19 +79,46 @@
                 <tr>
                     <th>Crop Name</th>
                     <th>Scientific Name</th>
-                    <th>Category</th>
-                    <th>Season</th>
-                    <th>Field</th>
-                    <th>Option</th>
+                    <th class="th-td-space">Category</th>
+                    <th class="th-td-space">Season</th>
+                    <th class="th-td-space">Field</th>
+                    <th class="th-td-space">Option</th>
                 </tr>
             </thead>
             <tbody id="crop-table-body">
 
             </tbody>
         </table>
+
+        <div class="image-container">
+          <img id="loaded-crop-image" src=""" alt="">
+        </div>
+
         </div>
 
     </div>
+
+    <!-- Popup Modal HTML -->
+<div id="popupModal" class="modal" style="display: none;">
+  <div class="modal-content">
+      <span class="close-btn">&times;</span>
+      <h5>Update Crop</h5>
+      <div class="update-form">
+        <span>Crop Name</span>
+        <span class="crop-scientific-desc update-crop-scientific-desc">Crop Scientific Name</span><br>
+        <input type="text" class="textfield">  
+        <input type="text" class="textfield" id="scientificname-textfield"><br>
+        <span>Category</span>
+        <span class="crop-season-desc update-crop-scientific-desc">Crop Season</span><br>
+        <input type="text" class="textfield" id="category-textfield">
+        <input type="text" class="textfield" id="cropseason-textfield"><br>
+        <div class="btn-container">
+          <button class="btn-update-crop">Update Crop</button>
+        </div>
+      </div>
+  </div>
+</div>
+
 
     
     <!-- jQuery CDN (latest version) -->
