@@ -12,34 +12,34 @@ function updateDateTime() {
 
 
 
-// Initialize the map
-const map = L.map('map').setView([51.505, -0.09], 13); // Default view coordinates
+// // Initialize the map
+// const map = L.map('map').setView([51.505, -0.09], 13); // Default view coordinates
 
-// Add the OpenStreetMap tiles
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: 19,
-    attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+// // Add the OpenStreetMap tiles
+// L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+//     maxZoom: 19,
+//     attribution: '© OpenStreetMap contributors'
+// }).addTo(map);
 
-// Marker to indicate selected location
-let marker;
+// // Marker to indicate selected location
+// let marker;
 
-// Handle click events on the map
-map.on('click', function(e) {
-    const lat = e.latlng.lat;
-    const lng = e.latlng.lng;
+// // Handle click events on the map
+// map.on('click', function(e) {
+//     const lat = e.latlng.lat;
+//     const lng = e.latlng.lng;
 
-    // Update marker position or create a new marker
-    if (marker) {
-        marker.setLatLng(e.latlng);
-    } else {
-        marker = L.marker(e.latlng).addTo(map);
-    }
+//     // Update marker position or create a new marker
+//     if (marker) {
+//         marker.setLatLng(e.latlng);
+//     } else {
+//         marker = L.marker(e.latlng).addTo(map);
+//     }
 
-    // Display selected location coordinates
-    document.getElementById('location-display').innerHTML = 
-        `Selected Location: Latitude ${lat.toFixed(5)}, Longitude ${lng.toFixed(5)}`;
-});
+//     // Display selected location coordinates
+//     document.getElementById('location-display').innerHTML = 
+//         `Selected Location: Latitude ${lat.toFixed(5)}, Longitude ${lng.toFixed(5)}`;
+// });
 
 
 

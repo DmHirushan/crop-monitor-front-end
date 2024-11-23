@@ -39,4 +39,37 @@ export function getAll() {
       http.send();
     });
   }
+
+  export function saveCrop(formData) {
+    $.ajax({
+      url: "http://localhost:5055/crop-monitor/api/v1/crop",
+      type: "POST",
+      processData: false, // Prevent jQuery from automatically transforming the data into a query string
+      contentType: false, // Let the browser set the correct Content-Type header
+      data: formData, // Send the FormData object
+      success: (response) => {
+        alert("Crop saved successfully!");
+      },
+      error: (jqXHR, textStatus, errorThrown) => {
+        alert(`Failed to save crop: ${textStatus} - ${errorThrown}`);
+      },
+  });
+}
+
+export function getCrop(cropCode) {
+  $.ajax({
+      url: `http://localhost:5055/crop-monitor/api/v1/crop/${cropCode}`, // API endpoint with cropCode
+      type: "GET", // HTTP method
+      success: (response) => {
+          // Process the response
+          console.log("Crop details retrieved successfully:", response);
+          alert(`Crop Name: ${response.cropCommonName}\nScientific Name: ${response.cropScientificName}`);
+      },
+      error: (jqXHR, textStatus, errorThrown) => {
+          alert(`Failed to fetch crop: ${textStatus} - ${errorThrown}`);
+      },
+  });
+}
+
+  
   

@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Management</title>
-    <link rel="stylesheet" href="/styles/cropmanagement.css">
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="/styles/cropmanagement.css">   
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -25,16 +26,16 @@
                       <a class="nav-link" href="/pages/fieldManagement.html">Field </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Crop <span class="sr-only">(current)</span> </a>
+                      <a class="nav-link" href="/pages/cropManagement.html">Crop <span class="sr-only">(current)</span> </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Staff</a>
+                      <a class="nav-link" href="/pages/staffManagement.html">Staff</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Vehicle</a>
+                      <a class="nav-link" href="/pages/vehicleManagement.html">Vehicle</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Equipment</a>
+                      <a class="nav-link" href="/pages/equipManagement.html">Equipment</a>
                     </li>
                     
                   </ul>
@@ -45,79 +46,78 @@
 
     <div class="content-container">
         <div class="form-container">
-            <h3>Manage Crops</h3>
-            <div class="date-time-container"></div>
-
-            <div class="form">
-                <span>Crop Name</span>
-                <span class="crop-scientific-desc">Crop Scientific Name</span><br>
-                <input type="text" class="textfield">  
-                <input type="text" class="textfield" id="scientificname-textfield"><br>
-                <span>Category</span>
-                <span class="crop-season-desc">Crop Season</span><br>
-                <input type="text" class="textfield" id="category-textfield">
-                <input type="text" class="textfield" id="cropseason-textfield"><br>
-                <span>Field Code</span><br> 
-                <select id="options" name="options">
-                  <option value="" disabled selected>Loading...</option>
-                </select>
-                <br>
-                <!-- Custom styled file upload button -->
-                <span class="pb-4">Crop Image</span>
-                <label class="custom-file-upload">
-                    <img src="/assets/Plus.png" alt="">
-                    <input type="file" id="fileUpload" onchange="displayFileName()">
-                </label>
-                <button class="btn-save-crop">Save Crop</button>
-                 
+            <div class="header-container"> 
+              <div>
+                <h3>Manage Crops</h3>
+                <div class="date-time-container pb-5"></div>
+              </div> 
+              <button id="add-crop-btn" type="button" class="btn btn-success">+ Add Crop</button>
             </div>
-        </div>
-
-        <div class="table-container">
-          <table id="crop-table">
-            <thead>
-                <tr>
-                    <th>Crop Name</th>
-                    <th>Scientific Name</th>
-                    <th class="th-td-space">Category</th>
-                    <th class="th-td-space">Season</th>
-                    <th class="th-td-space">Field</th>
-                    <th class="th-td-space">Option</th>
-                </tr>
-            </thead>
-            <tbody id="crop-table-body">
-
-            </tbody>
-        </table>
-
-        <div class="image-container">
-          <img id="loaded-crop-image" src=""" alt="">
-        </div>
+            <div id="card-container" class="ps-5"></div>
 
         </div>
 
     </div>
 
-    <!-- Popup Modal HTML -->
-<div id="popupModal" class="modal" style="display: none;">
-  <div class="modal-content">
-      <span class="close-btn">&times;</span>
-      <h5>Update Crop</h5>
-      <div class="update-form">
-        <span>Crop Name</span>
-        <span class="crop-scientific-desc update-crop-scientific-desc">Crop Scientific Name</span><br>
-        <input type="text" class="textfield">  
-        <input type="text" class="textfield" id="scientificname-textfield"><br>
-        <span>Category</span>
-        <span class="crop-season-desc update-crop-scientific-desc">Crop Season</span><br>
-        <input type="text" class="textfield" id="category-textfield">
-        <input type="text" class="textfield" id="cropseason-textfield"><br>
-        <div class="btn-container">
-          <button class="btn-update-crop">Update Crop</button>
-        </div>
+
+
+  <!-- Add-Crop-Modal -->
+  <div id="add-crop-modal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <h3>Add Crop</h3>
+          <form id="add-crop-form">
+              <div>
+                  <label for="crop-name">Crop Name:</label>
+                  <input type="text" id="crop-name" name="cropName" required class="form-control">
+              </div>
+              <div>
+                <label for="crop-name">Crop Scientific Name:</label>
+                <input type="text" id="crop-scientific-name" name="cropName" required class="form-control">
+            </div>
+            <div>
+              <label for="crop-field">Category</label>
+              <input type="text" id="crop-category" name="cropField" required class="form-control">
+          </div>
+              <div>
+                  <label for="crop-field">Field:</label>
+                  <input type="text" id="crop-field" name="cropField" required class="form-control">
+              </div>
+              <div>
+                  <label for="crop-season">Season:</label>
+                  <input type="text" id="crop-season" name="cropSeason" required class="form-control">
+              </div>
+
+              <div class="custom-file-input pb-3 pt-2">
+                <label for="file-input" class="file-label">Crop image</label>
+                <input type="file" id="file-input">
+              </div>
+
+              <button  class="btn btn-primary">Save Crop</button>
+          </form>
       </div>
   </div>
-</div>
+
+
+    <!-- View-Crop-Modal -->
+    <div id="crop-modal" class="modal">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <img id="modal-img" src="" alt="Crop Image">
+          <h3 id="modal-title"></h3>
+          <p id="modal-text"></p>
+          <p id="modal-field"></p>
+          <p id="modal-crop-season"></p>
+          <p id="modal-crop-category"></p>  
+
+          <div class="button">
+            <button id="update-btn" type="button" class="btn btn-secondary">Update</button>
+            <button id="delete-btn" type="button" class="btn btn-danger">Delete</button>
+          </div>
+
+      </div>
+  </div>
+  
 
 
     

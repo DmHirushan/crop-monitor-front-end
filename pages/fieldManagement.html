@@ -21,19 +21,19 @@
                       <a class="nav-link" href="/pages/dashboard.html">Dashboard</a>
                     </li>
                     <li class="nav-item active">
-                      <a class="nav-link" href="/pages/fieldManagement.html">Field <span class="sr-only">(current)</span></a>
+                      <a class="nav-link" href="/pages/fieldManagement.html">Field </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="/pages/cropManagement.html">Crop</a>
+                      <a class="nav-link" href="/pages/cropManagement.html">Crop <span class="sr-only">(current)</span> </a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Staff</a>
+                      <a class="nav-link" href="/pages/staffManagement.html">Staff</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Vehicle</a>
+                      <a class="nav-link" href="/pages/vehicleManagement.html">Vehicle</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Equipment</a>
+                      <a class="nav-link" href="/pages/equipManagement.html">Equipment</a>
                     </li>
                     
                   </ul>
@@ -45,40 +45,20 @@
     <div class="content-container">
         <div class="form-container">
             <h3>Manage Fields</h3>
-            <div class="date-time-container"></div>
+            <div class="date-time-container pb-5"></div>
 
-            <div class="form">
-                <span>Field Name</span>
-                <span class="field-name-desc">Field Size</span><br>
-                <input type="text" class="textfield">  
-                <input type="text" class="textfield" id="field-size-textfield">
-
-                <div class="map-container">
-                    <div id="map"></div>
-                </div>
-                <div id="location-display">Selected Location: None</div>
-            
-                
-
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" id="crop-image" src="" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
             </div>
-        </div>
 
-        <div class="table">
-            <table id="field-table">
-                <thead>
-                    <tr>
-                        <th>Field Code</th>
-                        <th>Field name</th>
-                        <th>Field Size</th>
-                    </tr>
-                </thead>
-                <tbody id="field-table-body">
-
-                </tbody>
-            </table>
-        </div>
     </div>
     
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="/controller/FieldController.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
