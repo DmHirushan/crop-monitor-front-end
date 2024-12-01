@@ -1,4 +1,9 @@
-import { deleteCrop, getAll, saveCrop } from "../model/CropModel.js";
+import {
+  deleteCrop,
+  getAll,
+  saveCrop,
+  updateCrop,
+} from "../model/CropModel.js";
 
 updateDateTime();
 setInterval(updateDateTime, 1000);
@@ -37,7 +42,7 @@ $("#delete-btn").on("click", function () {
       // Handle any errors that occur while refreshing the crops list
       console.error("Error refreshing crops list:", error);
     });
-})
+});
 
 // File input event listener
 let cropImage;
@@ -56,8 +61,10 @@ function save() {
   formData.append("cropImage", cropImage);
 
   console.log("FormData:", formData);
-  saveCrop(formData).then();
-  getAllCrops();
+  saveCrop(formData).then(() => {
+    location.reload();
+    getAllCrops();
+  });
 }
 
 // Fetch and display all crops
@@ -98,7 +105,6 @@ export function getAllCrops() {
     });
 }
 
-
 // Open modal with crop details
 function openModal(crop) {
   cropCode = crop.cropCode;
@@ -133,6 +139,7 @@ function deleteCropWithCropCode(cropCode) {
     deleteCrop(cropCode)
       .then((message) => {
         console.log(message);
+        location.reload();
         getAllCrops();
       })
       .catch((error) => {
@@ -143,38 +150,80 @@ function deleteCropWithCropCode(cropCode) {
   }
 }
 
+// // Update modal content
+// $("#update-btn").on("click", function () {
+//   const makeEditable = (selector) => {
+//     const $element = $(selector);
+//     const [staticText, editableText] = $element.text().split(":");
+//     $element.html(
+//       `${staticText}: <input type="text" value="${editableText?.trim()}" class="form-control">`
+//     );
+//   };
 
-// Update modal content
-$("#update-btn").on("click", function () {
-  const makeEditable = (selector) => {
-    const $element = $(selector);
-    const [staticText, editableText] = $element.text().split(":");
-    $element.html(`${staticText}: <input type="text" value="${editableText?.trim()}" class="form-control">`);
-  };
+//   $(".custom-file-input").css("display", "flex");
 
-  makeEditable("#modal-text");
-  makeEditable("#modal-field");
-  makeEditable("#modal-crop-season");
-  makeEditable("#modal-crop-category");
+//   makeEditable("#modal-text");
+//   makeEditable("#modal-field");
+//   makeEditable("#modal-crop-season");
+//   makeEditable("#modal-crop-category");
 
-  $(this).text("Save").attr("id", "save-btn");
-  $("#save-btn").on("click", saveUpdates);
+//   $(this).text("Save").attr("id", "save-btn");
+//   $("#save-btn").on("click", saveUpdates);
+// });
+
+// // Save updates
+// function saveUpdates() {
+//   console.log($("#modal-text input")); // Should log the element
+//   console.log($("#modal-field input")); // Should log the input element
+//   console.log($("#modal-crop-season input")); // Should log the input element
+//   console.log($("#modal-crop-category input")); // Should log the input element
+
+//   const updatedText = $("#modal-text").text();
+//   const updatedField = $("#modal-field input").val();
+//   const updatedCropSeason = $("#modal-crop-season input").val();
+//   const updatedCropCategory = $("#modal-crop-category input").val();
+
+//   console.log("Updated Text : ", updatedText);
+
+//   const formData = new FormData();
+//   formData.append("cropScientificName", updatedText);
+//   formData.append("cropCategory", updatedCropCategory);
+//   formData.append("cropSeason", updatedCropSeason);
+//   formData.append("fieldCode", updatedField);
+//   formData.append("cropImage", cropImage);
+
+//   console.log("Form Data : " + formData.cropCategory);
+//   updateCrop(cropCode, formData);
+
+//   $("#modal-text").text(`Scientific Name: ${updatedText}`);
+//   $("#modal-field").text(`Field Code: ${updatedField}`);
+//   $("#modal-crop-season").text(`Crop Season: ${updatedCropSeason}`);
+//   $("#modal-crop-category").text(`Crop Category: ${updatedCropCategory}`);
+
+//   $("#save-btn").text("Update").attr("id", "update-btn");
+// }
+
+$(document).ready(function () {
+  // Update button click handler
+  $("#update-btn").on("click", function () {
+    const updatedTitle = $("#modal-title").text();
+    const updatedText = $("#modal-text").text();
+    const updatedField = $("#modal-field").text();
+    const updatedCropSeason = $("#modal-crop-season").text();
+    const updatedCropCategory = $("#modal-crop-category").text();
+
+    // Log the updated values
+    console.log("Updated Title:", updatedTitle);
+    console.log("Updated Text:", updatedText);
+    console.log("Updated Field:", updatedField);
+    console.log("Updated Crop Season:", updatedCropSeason);
+    console.log("Updated Crop Category:", updatedCropCategory);
+
+    // Perform additional actions with the updated data
+    // e.g., Send the updated data to the server via an API
+  });
 });
 
-// Save updates
-function saveUpdates() {
-  const updatedText = $("#modal-text input").val();
-  const updatedField = $("#modal-field input").val();
-  const updatedCropSeason = $("#modal-crop-season input").val();
-  const updatedCropCategory = $("#modal-crop-category input").val();
-
-  $("#modal-text").text(`Scientific Name: ${updatedText}`);
-  $("#modal-field").text(`Field Code: ${updatedField}`);
-  $("#modal-crop-season").text(`Crop Season: ${updatedCropSeason}`);
-  $("#modal-crop-category").text(`Crop Category: ${updatedCropCategory}`);
-
-  $("#save-btn").text("Update").attr("id", "update-btn");
-}
 
 // Add crop modal functionality
 $("#add-crop-btn").on("click", () => {

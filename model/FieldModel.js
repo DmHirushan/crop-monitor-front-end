@@ -1,47 +1,76 @@
-export function save(fieldFormData){
-    return new Promise ((resolve, reject) => {
-        const http = new XMLHttpRequest();
-        
-        http.onreadystatechange = () => {
-        if(http.readyState == 4){
-            if(http.status == 201){
+export function saveField(fieldFormData) {
+  return new Promise((resolve, reject) => {
+      $.ajax({
+          url: "http://localhost:5055/crop-monitor/api/v1/field",
+          type: "POST",
+          data: fieldFormData,
+          processData: false, // Prevents jQuery from automatically processing the data
+          contentType: false, // Prevents jQuery from setting Content-Type (required for FormData)
+          success: function (response) {
+              console.log('Hello');
+              resolve(true);
+          },
+          error: function (xhr) {
+              console.error('Request failed with status:', xhr.status);
+              reject(false);
+          }
+      });
+  });
+}
+
+export function updateField(fieldFormData) {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: "http://localhost:5055/crop-monitor/api/v1/field",
+            type: "PATCH",
+            data: fieldFormData,
+            processData: false, // Prevents jQuery from automatically processing the data
+            contentType: false, // Prevents jQuery from setting Content-Type (required for FormData)
+            success: function (response) {
                 console.log('Hello');
                 resolve(true);
-            }else{
+            },
+            error: function (xhr) {
+                console.error('Request failed with status:', xhr.status);
                 reject(false);
-                console.log('Request failed with status:', http.status);
             }
-        }else{
+        });
+    });
+  }
 
-        }
-    };
-
-    http.open("POST", "http://localhost:5055/crop-monitor/api/v1/field", true);
-    // http.setRequestHeader("Content-type", "multipart/form-data");
-    http.send(fieldFormData);
-    }) 
-    
-}
 
 export function getAll() {
   return new Promise((resolve, reject) => {
-    let fields = [];
-    const http = new XMLHttpRequest();
-
-    http.onreadystatechange = () => {
-      if (http.readyState == 4) {
-        if (http.status == 200) {
-          fields = JSON.parse(http.responseText);
-          console.log(fields);
-          resolve(fields);
-        } else {
-          reject("Request failed with status:", http.status);
-        }
-      }
-    };
-
-    http.open("GET", "http://localhost:5055/crop-monitor/api/v1/field", true);
-    // http.setRequestHeader("Content-type", "application/json");
-    http.send();
+      $.ajax({
+          url: "http://localhost:5055/crop-monitor/api/v1/field",
+          type: "GET",
+          dataType: "json",
+          success: function (response) {
+              console.log(response);
+              resolve(response);
+          },
+          error: function (xhr) {
+              console.error('Request failed with status:', xhr.status);
+              reject("Request failed with status:", xhr.status);
+          }
+      });
   });
 }
+
+export function deleteField(fieldCode) {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: `http://localhost:5055/crop-monitor/api/v1/field/${fieldCode}`, // Field-specific URL
+        type: "DELETE",
+        success: function (response) {
+          console.log('Field deleted successfully:', response);
+          resolve(true); // Resolve the promise
+        },
+        error: function (xhr) {
+          console.error('Delete request failed with status:', xhr.status);
+          reject(false); // Reject the promise
+        }
+      });
+    });
+  }
+  

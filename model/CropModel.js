@@ -41,20 +41,23 @@ export function getAll() {
   }
 
   export function saveCrop(formData) {
-    $.ajax({
-      url: "http://localhost:5055/crop-monitor/api/v1/crop",
-      type: "POST",
-      processData: false, // Prevent jQuery from automatically transforming the data into a query string
-      contentType: false, // Let the browser set the correct Content-Type header
-      data: formData, // Send the FormData object
-      success: (response) => {
-        alert("Crop saved successfully!");
-      },
-      error: (jqXHR, textStatus, errorThrown) => {
-        alert(`Failed to save crop: ${textStatus} - ${errorThrown}`);
-      },
-  });
-}
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: "http://localhost:5055/crop-monitor/api/v1/crop",
+        type: "POST",
+        processData: false, // Prevent jQuery from automatically transforming the data into a query string
+        contentType: false, // Let the browser set the correct Content-Type header
+        data: formData, // Send the FormData object
+        success: (response) => {
+          resolve(response); // Resolve the promise with the response
+        },
+        error: (jqXHR, textStatus, errorThrown) => {
+          reject(new Error(`Failed to save crop: ${textStatus} - ${errorThrown}`)); // Reject the promise with an error
+        },
+      });
+    });
+  }
+  
 
 export function getCrop(cropCode) {
   $.ajax({
@@ -70,6 +73,29 @@ export function getCrop(cropCode) {
       },
   });
 }
+
+export function updateCrop(cropCode, formData) {
+  $.ajax({
+      url: `http://localhost:5055/crop-monitor/api/v1/crop/${cropCode}`, // API endpoint with cropCode
+      type: "PATCH", // HTTP method for partial updates
+      processData: false, // Prevent jQuery from processing the data
+      contentType: false, // Ensure the correct Content-Type header
+      data: formData, // Send FormData directly
+      success: (response) => {
+          // Process the successful response
+          console.log("Crop updated successfully:", response);
+          alert("Crop updated successfully!");
+      },
+      error: (jqXHR, textStatus, errorThrown) => {
+          // Handle any errors
+          alert(`Failed to update crop: ${textStatus} - ${errorThrown}`);
+      },
+  });
+}
+
+
+
+
 
   
   

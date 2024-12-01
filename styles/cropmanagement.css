@@ -288,5 +288,9 @@
     display: none;
 }
 
+#crop-modal .custom-file-input {
+    display: none;
+}
+
 
 
