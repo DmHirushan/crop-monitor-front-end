@@ -1,8 +1,13 @@
+import { getCookie } from "./TokenModel.js";
+
 export function getAll() {
   return new Promise((resolve, reject) => {
       $.ajax({
           url: "http://localhost:5055/crop-monitor/api/v1/equipment",
           type: "GET",
+          headers: {
+            Authorization: "Bearer " + getCookie("authToken"), // Ensure token is valid
+          }, // HTTP method
           success: (data) => {
               console.log(data);
               resolve(data);
@@ -20,6 +25,9 @@ export function save(equipment) {
       $.ajax({
           url: "http://localhost:5055/crop-monitor/api/v1/equipment",
           type: "POST",
+          headers: {
+            Authorization: "Bearer " + getCookie("authToken"), // Ensure token is valid
+          }, // HTTP method
           contentType: "application/json",
           data: JSON.stringify(equipment),
           success: (response) => {
@@ -38,6 +46,9 @@ export function deleteEquipment(equipmentId) {
       $.ajax({
         url: `http://localhost:5055/crop-monitor/api/v1/equipment/${equipmentId}`,
         type: "DELETE",
+        headers: {
+          Authorization: "Bearer " + getCookie("authToken"), // Ensure token is valid
+        }, // HTTP method
         success: (response) => {
           console.log("Equipment deleted successfully:", response);
           resolve(response);
@@ -54,6 +65,9 @@ export function deleteEquipment(equipmentId) {
       $.ajax({
         url: `http://localhost:5055/crop-monitor/api/v1/equipment/${equipmentId}`,
         type: "PATCH",
+        headers: {
+          Authorization: "Bearer " + getCookie("authToken"), // Ensure token is valid
+        }, // HTTP method
         contentType: "application/json",
         data: JSON.stringify(updatedData),
         success: (response) => {

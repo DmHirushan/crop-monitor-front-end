@@ -1,6 +1,6 @@
 import { deleteEquipment, getAll, save, updateEquipment } from "../model/EquipmentModel.js";
 
-updateDateTime();
+// updateDateTime();
 getAllEquipments();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -35,7 +35,8 @@ function reloadTable(equipments) {
     let $newRow = $("<tr>").appendTo($tableBody);
 
     // Set row data
-    $("<td>").text(equipment.equipmentId).appendTo($newRow);
+    
+    $("<td>").text(dataRefactor(equipment.equipmentId, 22)).appendTo($newRow);
     $("<td>").text(equipment.name).appendTo($newRow);
     $("<td>")
       .addClass("th-td-space")
@@ -141,6 +142,13 @@ function reloadTable(equipments) {
     
   });
 
+}
+
+function dataRefactor(data, maxLength) {
+  if (data && typeof data === "string" && data.length > maxLength) {
+      return data.substring(0, maxLength) + " ...";
+  }
+  return data;
 }
 
 // Add vehicle modal functionality

@@ -76,7 +76,7 @@ export function getAllCrops() {
       if (Array.isArray(crops)) {
         crops.forEach((crop) => {
           const newCard = `
-            <div class="card" style="width: 18rem;" data-crop='${JSON.stringify(
+            <div class="card" style="width: 18rem; background-color: #b7f6b271" data-crop='${JSON.stringify(
               crop
             )}'>
               <img class="card-img-top" src="${base64ToImageURL(

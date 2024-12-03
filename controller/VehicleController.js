@@ -5,7 +5,7 @@ import {
   updateVehicle,
 } from "../model/VehicleModel.js";
 
-updateDateTime();
+// updateDateTime();
 getAllVehicles();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -40,13 +40,16 @@ function reloadTable(vehicles) {
     let $newRow = $("<tr>").appendTo($tableBody);
 
     // Set row data
-    $("<td>").text(vehicle.vehicleCode).appendTo($newRow);
+    $("<td>").text(dataRefactor(vehicle.vehicleCode, 22)).appendTo($newRow);
     $("<td>").text(vehicle.licensePlateNumber).appendTo($newRow);
     $("<td>")
       .addClass("th-td-space")
       .text(vehicle.vehicleCategory)
       .appendTo($newRow);
     $("<td>").addClass("th-td-space").text(vehicle.fuelType).appendTo($newRow);
+    if(vehicle.status === ""){
+      vehicle.status = "N/A";
+    }
     $("<td>").addClass("th-td-space").text(vehicle.status).appendTo($newRow);
     $("<td>").addClass("th-td-space").text(vehicle.remarks).appendTo($newRow);
     $("<td>").addClass("th-td-space").text(vehicle.staffId).appendTo($newRow);
@@ -126,6 +129,13 @@ function reloadTable(vehicles) {
     });
   });
 
+  function dataRefactor(data, maxLength) {
+    if (data && typeof data === "string" && data.length > maxLength) {
+        return data.substring(0, maxLength) + " ...";
+    }
+    return data;
+  }
+
   // Close the modal
   $(".close").on("click", function () {
     $("#vehicleDetailsModal").css("display", "none");
@@ -162,15 +172,17 @@ $("#save-vehicle-btn").on("click", (event) => {
   let licenseNumber = $("#license-plate-number").val();
   let category = $("#vehicle-category").val();
   let fuelType = $("#fuel-type").val();
+  let status = "AVALABLE"
   let remarks = $("#remarks").val();
 
   console.log(licenseNumber);
 
   let vehicle = {
     licensePlateNumber: licenseNumber,
-    vehicleCategory: category,
-    fuelType: fuelType,
-    remarks: remarks,
+    vehicleCategory : category,
+    fuelType : fuelType,
+    status : status,
+    remarks : remarks,
   };
   save(vehicle)
     .then((response) => {

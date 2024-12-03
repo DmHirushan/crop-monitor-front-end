@@ -1,7 +1,7 @@
 import { deleteField, getAll, saveField} from "../model/FieldModel.js";
 
-updateDateTime();
-setInterval(updateDateTime, 1000);
+// updateDateTime();
+// setInterval(updateDateTime, 1000);
 getAllFields();
 
 function updateDateTime() {
@@ -52,7 +52,7 @@ function getAllFields() {
       if (Array.isArray(fields)) {
         fields.forEach((field) => {
           const newCard = `
-            <div class="card" style="width: 18rem;" data-field='${JSON.stringify(
+            <div class="card" style="width: 18rem; background-color: #b7f6b271" data-field='${JSON.stringify(
               field
             )}'>
               <img class="card-img-top" src="${base64ToImageURL(
@@ -62,7 +62,7 @@ function getAllFields() {
                 <h5 class="card-title">${field.fieldName}</h5>
                 <p class="card-text">(${field.fieldSize})</p>
                 <p class="crop-field">Field Code: ${field.fieldCode}</p>
-                <p class="crop-field">Field Code: ${field.staffIds}</p>
+                
               </div>
             </div>`;
           $("#card-container").append(newCard);

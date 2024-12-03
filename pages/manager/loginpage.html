@@ -17,19 +17,23 @@
                 <div class="login-form">
                     <h3 class="heading">Log Into Your Account</h3>
                     <span class="field-desc">Username</span> <br>
-                    <input type="text" placeholder="Username" class="text-field"> <br>
+                    <input type="text" placeholder="Username" class="text-field" id="username-inputfield"> <br>
 
                     <span class="field-desc">Password</span> <br>
-                    <input type="password" placeholder="Password" class="text-field"> <br>
+                    <input type="password" placeholder="Password" class="text-field" id="password-inputfield"> <br>
 
-                    <button class="login-button">Login</button>
-                    
+                    <button class="login-button" id="login-btn">Login</button>
+                    <p>Do not have account? <a href="/pages/manager/registerform.html">Register Now</a></p>
                 </div>
             </div>
             
         </div>
     </div>
 
+
+    <!-- jQuery CDN (latest version) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/controller/LoginController.js" type="module"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -2,25 +2,213 @@
 
 .main-container{
     font-family: 'Lora', sans-serif; /* Replace 'Roboto' with your chosen font */
+    text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
 }
 
-.nav-container {
+:root {
+    --primary-green: #114321;
+    --secondary-green: #114321;
+  }
+  
+  .navbar {
+  height: 80px;
+    background: linear-gradient(to right, var(--primary-green), var(--secondary-green)) !important;
+    padding: 0.8rem 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  .navbar-brand {
     display: flex;
     align-items: center;
-    justify-content: center;
-}
+    color: white !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+  
+  .navbar-brand img {
+    margin-right: 10px;
+    height: 40px;
+    width: 40px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: rgba(255,255,255,0.8) !important;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: white !important;
+    transform: scale(1.05);
+  }
+  
+  .navbar-nav .nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    transition: width 0.3s;
+  }
+  
+  .navbar-nav .nav-link:hover::after {
+    width: 100%;
+  }
+  
+  .navbar-nav .nav-item.active .nav-link {
+    color: white !important;
+    font-weight: bold;
+  }
+  
+  .btn-logout {
+    background-color: rgba(255,255,255,0.2);
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-logout:hover {
+    background-color: rgba(255,255,255,0.3);
+  }
+  
+  
+  /* From Uiverse.io by andrew-demchenk0 */ 
+  .add-new-button {
+  position: relative;
+  width: 150px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: 1px solid #34974d;
+  background-color: #3aa856;
+  }
+  
+  .add-new-button, .button__icon, .button__text {
+  transition: all 0.3s;
+  }
+  
+  .add-new-button .button__text {
+  transform: translateX(30px);
+  color: #fff;
+  font-weight: 600;
+  }
+  
+  .add-new-button .button__icon {
+  position: absolute;
+  transform: translateX(109px);
+  height: 100%;
+  width: 39px;
+  background-color: #34974d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  }
+  
+  .add-new-button .svg {
+  width: 30px;
+  stroke: #fff;
+  }
+  
+  .add-new-button:hover {
+  background: #34974d;
+  }
+  
+  .add-new-button:hover .button__text {
+  color: transparent;
+  }
+  
+  .add-new-button:hover .button__icon {
+  width: 148px;
+  transform: translateX(0);
+  }
+  
+  .add-new-button:active .button__icon {
+  background-color: #2e8644;
+  }
+  
+  .add-new-button:active {
+  border: 1px solid #2e8644;
+  }
+  
+  
+  
+  @media (max-width: 991px) {
+    .navbar-collapse {
+        background: linear-gradient(to right, var(--primary-green), var(--secondary-green));
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1000;
+        padding: 20px;
+        overflow-y: auto;
+    }
+  
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+  
+    .navbar-nav .nav-link {
+        font-size: 1.5rem;
+        margin: 15px 0;
+    }
+  }
+
+
 
 .content-container {
-    display: flex;
-    font-family: 'Lora', sans-serif; /* Replace 'Roboto' with your chosen font */
-    font-family: 'Lora', sans-serif;
-    
-    border: 1px solid black;
-    margin: 30px;
-    height: 600px;
-    /* background-color: rgb(208, 233, 215); */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Adds a shadow effect */
-}
+    display: grid;
+    grid-template-rows: 65px auto;
+      font-family: 'Lora', sans-serif; /* Replace 'Roboto' with your chosen font */
+      font-family: 'Lora', sans-serif;
+      padding: 1%;
+      border-radius: 15px;
+      margin: 30px;
+      height: 580px;
+      /* background-color: rgb(208, 233, 215); */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); /* Adds a shadow effect */
+  }
+
+ 
+  .nav-container{
+    text-align: center;
+  }
+  
+  .navbar{
+    text-align: center;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  
+  .header-container{
+      display: grid;
+      grid-template-columns: 50% 50%;
+      place-content: center;
+  }
+  
+  .page-topic{
+    text-align: left;
+  }
+  
+  .add-new-button-container{
+    place-content: center;
+    position: fixed;
+    top: 135px;
+    right: 45px;
+    /* margin-left: 35vw; */
+  }
 
 
 
