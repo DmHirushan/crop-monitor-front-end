@@ -257,4 +257,10 @@ $("#save-field-btn").on("click", (event) => {
   });
 });
 
+$("#logout-btn").on("click", () => {
+  if(confirm("Are you sure want to LogOut?")){
+    window.location = "manager/loginpage.html"; 
+  }
+});
+
 

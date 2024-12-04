@@ -45,7 +45,7 @@
                       </li>
                   </ul>
                   
-                  <button class="btn btn-logout" type="button">Logout</button>
+                  <button class="btn btn-logout" type="button" id="logout-btn">Logout</button>
               </div>
           </div>
       </nav>
@@ -64,9 +64,10 @@
               <div class="date-time-container pb-2"></div>
             </div>
             
-            <div class="pt-2">
-              <button class="btn btn-success" id="add-new-field-btn">+Add Field</button>
-            </div>
+            <button type="button" class="add-new-button" id="add-new-field-btn">
+              <span class="button__text">Add Field</span>
+              <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+            </button>
           </div>
         </div>
           <div id="card-container" class="ps-5"></div>
@@ -114,6 +115,30 @@
         <button type="button" class="btn btn-danger">Delete</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
+    </div>
+  </div>
+</div>
+
+<!-- Field Detail Modal -->
+<div id="fieldDetailsModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2 class="modal-title">Staff Member Details</h2>
+    <div class="modal-body">
+      <p><strong>First Name:</strong> <span id="modal-firstName"></span></p>
+      <p><strong>Last Name:</strong> <span id="modal-lastName"></span></p>
+      <p><strong>Designation:</strong> <span id="modal-designation"></span></p>
+      <p><strong>Gender:</strong> <span id="modal-gender"></span></p>
+      <p><strong>Joined Date:</strong> <span id="modal-joinedDate"></span></p>
+      <p><strong>Date of Birth:</strong> <span id="modal-dob"></span></p>
+      <p><strong>Address:</strong><br> <span id="modal-address"></span></p>
+      <p><strong>Contact No:</strong> <span id="modal-contactNo"></span></p>
+      <p><strong>Email:</strong> <span id="modal-email"></span></p>
+      <p><strong>Role:</strong> <span id="modal-role"></span></p>
+    </div>
+    <div class="btn-container">
+        <button class="btn btn-secondary " id="update-btn">Update</button>
+        <button class="btn btn-danger ms-2" id="delete-btn">Delete</button>
     </div>
   </div>
 </div>

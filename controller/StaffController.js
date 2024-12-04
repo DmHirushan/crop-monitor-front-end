@@ -1,6 +1,6 @@
 import {
   deleteStaffMember,
-  getAll,
+  getAllStaff,
   saveStaffMember,
   updateStaffMember,
 } from "../model/StaffModel.js";
@@ -22,7 +22,7 @@ function updateDateTime() {
 // });
 
 export function getAllStaffMembers() {
-  getAll().then((staff) => {
+  getAllStaff().then((staff) => {
     reloadTable(staff);
   });
 }
@@ -331,4 +331,10 @@ $("#save-staff-member").on("click", () => {
 
   // Log the JSON object to check its structure
   console.log(JSON.stringify(staffDetails, null, 2));
+});
+
+$("#logout-btn").on("click", () => {
+  if(confirm("Are you sure want to LogOut?")){
+    window.location = "manager/loginpage.html"; 
+  }
 });

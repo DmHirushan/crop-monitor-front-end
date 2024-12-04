@@ -80,7 +80,7 @@
                     </li>
                 </ul>
                 
-                <button class="btn btn-logout" type="button">Logout</button>
+                <button class="btn btn-logout" type="button" id="logout-btn">Logout</button>
             </div>
         </div>
     </nav>
@@ -97,7 +97,7 @@
           <h3>Manage Vehicles</h3>
             <div class="add-new-vehicle-button ps-5" style="position: fixed; right: 45px; top: 135px;">
               <button type="button" class="add-new-button" id="add-new-vehicle">
-                <span class="button__text">Add Item</span>
+                <span class="button__text">Add Vehicle</span>
                 <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
               </button>
             </div>
@@ -166,7 +166,11 @@
     <p><strong>Fuel Type:</strong> <span id="modal-fuelType"></span></p>
     <p><strong>Status:</strong> <span id="modal-status"></span></p>
     <p><strong>Remarks:</strong> <span id="modal-remarks"></span></p>
-    <p><strong>Assigned Staff ID:</strong> <span id="modal-staffId"></span></p>
+    <p><strong>Assigned Staff ID:</strong>
+      <select id="modal-staffId">
+        <option value="" disabled selected>Select Staff</option>
+      </select>
+    </p>
   </div>
   <div class="btn-container">
       <button class="btn btn-secondary" id="update-vehicle-btn">Update</button>

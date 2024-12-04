@@ -21,6 +21,7 @@ export function getAll() {
 
 
 export function save(equipment) {
+  console.log(equipment);
   return new Promise((resolve, reject) => {
       $.ajax({
           url: "http://localhost:5055/crop-monitor/api/v1/equipment",

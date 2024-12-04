@@ -1,6 +1,6 @@
 import { getCookie } from "./TokenModel.js";
 
-export function getAll() {
+export function getAllStaff() {
   return new Promise((resolve, reject) => {
     $.ajax({
       url: "http://localhost:5055/crop-monitor/api/v1/staff",

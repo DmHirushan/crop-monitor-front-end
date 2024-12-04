@@ -239,3 +239,9 @@ $(window).on("click", (event) => {
     $("#add-crop-modal").css("display", "none");
   }
 });
+
+$("#logout-btn").on("click", () => {
+  if(confirm("Are you sure want to LogOut?")){
+    window.location = "manager/loginpage.html"; 
+  }
+});

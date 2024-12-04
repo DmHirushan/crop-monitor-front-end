@@ -338,7 +338,7 @@ tr:hover {
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 90%; /* Could be more or less, depending on screen size */
   max-width: 400px;
 }
 
@@ -371,3 +371,25 @@ button:hover {
 }
 
 
+#fieldcode-selector {
+  display: none; /* Initially hidden */
+  margin-top: 1rem; /* Adds spacing from the previous element */
+}
+
+#fieldcode-selector select {
+  margin-top: 0.5rem; /* Adds spacing between the label and select box */
+  display: block; /* Ensures it appears on a new line */
+}
+
+#modal-staffId{
+  width: 100px;
+  height: 30px;
+}
+
+#modal-fieldCode{
+  margin: none;
+  padding: none;
+  place-content: center;
+  width: 100px;
+  height: 30px;
+}

@@ -11,9 +11,10 @@ $("#login-btn").on("click", () => {
         const token = response.token;
         saveCookie("authToken", token);
         console.log("Token saved as cookie:", getCookie("authToken") );
-        window.location = "/pages/cropManagement.html";
+        window.location = "/pages/dashboard.html";
       })
       .catch((error) => {
+        alert("Invalid Credentials..");
         console.log("Error:", error);
 });
 })

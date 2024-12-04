@@ -1,15 +1,17 @@
 import { deleteEquipment, getAll, save, updateEquipment } from "../model/EquipmentModel.js";
+import { getAllStaff } from "../model/StaffModel.js";
+import { getAll as getAllFields } from "../model/FieldModel.js"
 
 // updateDateTime();
 getAllEquipments();
 
-document.addEventListener("DOMContentLoaded", () => {
-  const datePicker = document.querySelector(".date-time-container");
-  datePicker.addEventListener("change", (event) => {
-    const selectedDate = event.target.value;
-    console.log("Selected date:", selectedDate);
-  });
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   const datePicker = document.querySelector(".date-time-container");
+//   datePicker.addEventListener("change", (event) => {
+//     const selectedDate = event.target.value;
+//     console.log("Selected date:", selectedDate);
+//   });
+// });
 
 function updateDateTime() {
   const now = new Date();
@@ -90,6 +92,14 @@ function reloadTable(equipments) {
 
       // Toggle editable fields when Update button is clicked
       $("#update-equipment-btn").on("click", function () {
+        loadStaffIds();
+        loadFieldCodes();
+        $("#staffid-selector").css("display",  "flex");
+        $("#modal-assignedStaffId-paragraph").css("display",  "none");
+
+        $("#fieldcode-selector").css("display",  "flex");
+        $("#modal-assignedFieldCode-paragraph").css("display",  "none");
+
         if (!isEditing) {
           // Enable editing
           $(".modal-body span").attr("contenteditable", "true").css({
@@ -113,8 +123,8 @@ function reloadTable(equipments) {
             name : $("#modal-name").text(),
             equipmentType : $("#modal-equipmentType").text(),
             status : $("#modal-status").text(),
-            assignedStaffId : $("modal-assignedStaffId").text(),
-            assignedFieldCode : $("modal-assignedFieldCode").text(),
+            assignedStaffId : $("#staffid-selector").val(),
+            assignedFieldCode : $("#fieldcode-selector").val(),
           };
 
           console.log("Updated data:", updatedData);
@@ -178,16 +188,59 @@ $("#save-equipment-btn").on("click", () => {
   let equipment = {
     name: equipmentName,
     equipmentType: equipmentType,
-    status : "Available"
+    status : "AVAILABLE"
   };
 
   save(equipment)
-    .then(() => {
+    .then((resolve) => {
       alert("Equipment saved successfully!");
-      console.log("Save successful:", response);
+      // console.log("Save successful:", response);
       location.reload();
     })
     .catch((error) => {
       console.error(error);
     });
 });
+
+$("#logout-btn").on("click", () => {
+  if(confirm("Are you sure want to LogOut?")){
+    window.location = "manager/loginpage.html"; 
+  }
+});
+
+
+function loadStaffIds() {
+  const staffDropdown = $("#modal-staffId"); // Use jQuery to select the dropdown
+
+  getAllStaff().then((staff) => {
+    // Clear the dropdown and set the default option
+    staffDropdown.empty(); // Clear existing options
+    staffDropdown.append('<option value="" disabled selected>Select Staff</option>');
+
+    // Add options dynamically
+    staff.forEach((staffMember) => {
+      const option = `<option value="${dataRefactor(staffMember.id, 2)}">${dataRefactor(staffMember.id, 25)} - ${staffMember.firstName}</option>`;
+      staffDropdown.append(option); // Append the option using jQuery
+    });
+  }).catch((error) => {
+    console.error("Error loading staff data:", error);
+  });
+}
+
+function loadFieldCodes() {
+  const fieldDropDown = $("#modal-fieldCode"); // Use jQuery to select the dropdown
+
+  getAllFields().then((fields) => {
+    // Clear the dropdown and set the default option
+    fieldDropDown.empty(); // Clear existing options
+    fieldDropDown.append('<option value="" disabled selected>Select Staff</option>');
+
+    // Add options dynamically
+    fields.forEach((field) => {
+      const option = `<option value="${dataRefactor(field.fieldCode, 2)}">${dataRefactor(field.fieldCode, 25)} - ${field.fieldName}</option>`;
+      fieldDropDown.append(option); // Append the option using jQuery
+    });
+  }).catch((error) => {
+    console.error("Error loading staff data:", error);
+  });
+}

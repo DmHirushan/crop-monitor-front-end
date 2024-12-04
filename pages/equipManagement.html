@@ -43,7 +43,7 @@
                         </li>
                     </ul>
                     
-                    <button class="btn btn-logout" type="button">Logout</button>
+                    <button class="btn btn-logout" type="button" id="logout-btn">Logout</button>
                 </div>
             </div>
         </nav>
@@ -58,7 +58,7 @@
             <h3>Manage Equipments</h3>
               <div class="add-new-vehicle-button ps-5" style="position: fixed; right: 45px; top: 135px;">
                 <button type="button" class="add-new-button" id="add-new-equipment">
-                  <span class="button__text">Add Item</span>
+                  <span class="button__text">Add Equipment</span>
                   <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
                 </button>
               </div>
@@ -90,7 +90,7 @@
     <div class="add-modal-content">
         <span class="add-close">&times;</span>
         <h3>Add Equipment</h3>
-        <form id="add-crop-form">
+        <div id="add-crop-form">
             <div>
                 <label for="equipment-name">Equipment Name:</label>
                 <input type="text" id="equipment-name" name="equipmentName" required class="form-control">
@@ -105,7 +105,7 @@
           </div>
 
             <button  class="btn btn-primary" id="save-equipment-btn">Save Equipment</button>
-        </form>
+        </div>
     </div>
   </div>
 
@@ -118,8 +118,24 @@
         <p><strong>Name:</strong> <span id="modal-name"></span></p>
         <p><strong>Equipment Type:</strong> <span id="modal-equipmentType"></span></p>
         <p><strong>Status:</strong> <span id="modal-status"></span></p>
-        <p><strong>Assigned Staff ID:</strong> <span id="modal-assignedStaffId"></span></p>
-        <p><strong>Assigned Field Code:</strong> <span id="modal-assignedFieldCode"></span></p>
+        <p id="modal-assignedStaffId-paragraph"><strong>Assigned Staff ID:</strong> <span id="modal-assignedStaffId"></span></p>
+
+        <p style="display: none;" id="staffid-selector"><strong>Assign Staff ID:</strong><br>
+            <br>
+            <select id="modal-staffId">
+              <option value="" disabled selected>Select Staff</option>
+            </select>
+        </p>
+
+        <p id="modal-assignedFieldCode-paragraph"><strong>Assigned Field Code:</strong> <span id="modal-assignedFieldCode"></span></p>
+
+        <p style="display: none;" id="fieldcode-selector"><strong>Assign Field Code:</strong>
+            <br>
+            <select id="modal-fieldCode">
+              <option value="" disabled selected>Select Field</option>
+            </select>
+        </p>
+
       </div>
       <div class="btn-container">
           <button class="btn btn-secondary" id="update-equipment-btn">Update</button>

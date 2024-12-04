@@ -5,6 +5,8 @@ import {
   updateVehicle,
 } from "../model/VehicleModel.js";
 
+import { getAllStaff} from "../model/StaffModel.js"
+
 // updateDateTime();
 getAllVehicles();
 
@@ -56,6 +58,7 @@ function reloadTable(vehicles) {
 
     $newRow.on("click", function () {
       console.log(`Row clicked for field: ${vehicle.licensePlateNumber}`);
+      loadStaffIds();
 
       // Populate the modal with vehicle details
       $("#modal-licensePlateNumber").text(vehicle.licensePlateNumber || "N/A");
@@ -129,12 +132,7 @@ function reloadTable(vehicles) {
     });
   });
 
-  function dataRefactor(data, maxLength) {
-    if (data && typeof data === "string" && data.length > maxLength) {
-        return data.substring(0, maxLength) + " ...";
-    }
-    return data;
-  }
+  
 
   // Close the modal
   $(".close").on("click", function () {
@@ -194,3 +192,35 @@ $("#save-vehicle-btn").on("click", (event) => {
       console.error(error);
     });
 });
+
+$("#logout-btn").on("click", () => {
+  if(confirm("Are you sure want to LogOut?")){
+    window.location = "manager/loginpage.html"; 
+  }
+});
+
+function dataRefactor(data, maxLength) {
+  if (data && typeof data === "string" && data.length > maxLength) {
+      return data.substring(0, maxLength) + " ...";
+  }
+  return data;
+}
+
+function loadStaffIds() {
+  const staffDropdown = $("#modal-staffId"); // Use jQuery to select the dropdown
+
+  getAllStaff().then((staff) => {
+    // Clear the dropdown and set the default option
+    staffDropdown.empty(); // Clear existing options
+    staffDropdown.append('<option value="" disabled selected>Select Staff</option>');
+
+    // Add options dynamically
+    staff.forEach((staffMember) => {
+      const option = `<option value="${dataRefactor(staffMember.id, 2)}">${dataRefactor(staffMember.id, 25)} - ${staffMember.firstName}</option>`;
+      staffDropdown.append(option); // Append the option using jQuery
+    });
+  }).catch((error) => {
+    console.error("Error loading staff data:", error);
+  });
+}
+
