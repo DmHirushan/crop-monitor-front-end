@@ -4,6 +4,7 @@ import {
   saveStaffMember,
   updateStaffMember,
 } from "../model/StaffModel.js";
+import { checkAccess } from "../util/AccessCotroller.js";
 
 
 getAllStaffMembers();
@@ -335,6 +336,6 @@ $("#save-staff-member").on("click", () => {
 
 $("#logout-btn").on("click", () => {
   if(confirm("Are you sure want to LogOut?")){
-    window.location = "manager/loginpage.html"; 
+    window.location = "manager/loginpage.html";
   }
 });

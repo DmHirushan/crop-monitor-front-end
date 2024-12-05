@@ -1,5 +1,6 @@
 
 export function save(newUser) {
+  console.log(newUser.role);
     return new Promise((resolve, reject) => {
       $.ajax({
         url: "http://localhost:5055/crop-monitor/api/v1/auth/signup",

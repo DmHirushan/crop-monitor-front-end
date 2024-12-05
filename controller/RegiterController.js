@@ -9,7 +9,7 @@ $("#register-btn").on("click", () => {
     const newUser = {
         email : username,
         password : password,
-        rple : role
+        role : role
     }
 
     save(newUser).then(() => {
