@@ -3,27 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehicle Management</title>
-    <link rel="stylesheet" href="/styles/styles.css">
+    <title>Staff Management</title>
+    <!-- <link rel="stylesheet" href="/styles/cropmanagement.css"> -->
+    <link rel="stylesheet" href="/styles/staffmanagement.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
 <body>
-    <div class="container">
-        <h2>Manage Vehicles</h2>
-        <form id="vehicleForm">
-            <label for="vehicleCode">Vehicle Code:</label>
-            <input type="text" id="vehicleCode" required>
+    <div class="main-container">
+        <div class="nav-container">
+            <!-- <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/pages/dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link" href="/pages/fieldManagement.html">Field </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/pages/cropManagement.html">Crop <span class="sr-only">(current)</span> </a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/pages/staffManagement.html">Staff</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/pages/vehicleManagement.html">Vehicle</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/pages/equipManagement.html">Equipment</a>
+                    </li>
+                    
+                  </ul>
+                </div>
+              </nav> -->
+    
+    
 
-            <label for="licensePlate">License Plate Number:</label>
-            <input type="text" id="licensePlate" required>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="/assets/dashboard navigation icons/Plant.png" alt="Greenshadow Logo">
+                Greenshadow
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/dashboard.html">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/fieldManagement.html">Field</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/cropManagement.html">Crop</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/staffManagement.html">Staff</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/vehicleManagement.html">Vehicle</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/pages/equipManagement.html">Equipment</a>
+                    </li>
+                </ul>
+                
+                <button class="btn btn-logout" type="button" id="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
 
-            <label for="vehicleCategory">Category:</label>
-            <input type="text" id="vehicleCategory" required>
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 
-            <label for="fuelType">Fuel Type:</label>
-            <input type="text" id="fuelType" required>
 
-            <button type="submit">Save Vehicle</button>
-        </form>
+        </div>
     </div>
+
+    <div class="content-container">     
+        <div class="header-container"> 
+          <h3>Manage Vehicles</h3>
+            <div class="add-new-vehicle-button ps-5" style="position: fixed; right: 45px; top: 135px;">
+              <button type="button" class="add-new-button" id="add-new-vehicle">
+                <span class="button__text">Add Vehicle</span>
+                <span class="button__icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" height="24" fill="none" class="svg"><line y2="19" y1="5" x2="12" x1="12"></line><line y2="12" y1="12" x2="19" x1="5"></line></svg></span>
+              </button>
+            </div>
+        </div>
+          
+        
+        
+
+        <div class="table-container">
+          <table id="vehicle-table" class="mt-3">
+              <thead>
+                  <tr style="background-color: #114321; color: white; ">
+                      <th>Vehicle Code</th>
+                      <th>License Number</th>
+                      <th>Category</th>
+                      <th>Fuel Type</th>
+                      <th>Status</th>
+                      <th>Remarks</th>
+                      <th>Allocated Staff</th>
+                  </tr>
+              </thead>
+              <tbody id="staff-table-body">
+  
+              </tbody>
+          </table>
+      </div>
+    </div>
+
+
+<!-- Add-vehicle-Modal -->
+<div id="add-vehicle-modal" class="modal">
+  <div class="modal-content">
+      <span class="close">&times;</span>
+      <h3>Add Crop</h3>
+      <form id="add-crop-form">
+          <div>
+              <label for="license-plate-number">License Plate Number:</label>
+              <input type="text" id="license-plate-number" name="licensePlateNumber" required class="form-control">
+          </div>
+          <div>
+            <label for="vehicle-category">Vehicle Category:</label>
+            <input type="text" id="vehicle-category" name="vehicleCategory" required class="form-control">
+        </div>
+        <div>
+          <label for="fuel-type">Fuel Type</label>
+          <input type="text" id="fuel-type" name="fuelType" required class="form-control">
+        </div>
+          <div class="pb-3">
+              <label for="remarks">Remarks:</label>
+              <input type="text" id="remarks"  name="remarks" required class="form-control">
+          </div>
+
+          <button  class="btn btn-primary" id="save-vehicle-btn">Save Vehicle</button>
+      </form>
+  </div>
+</div>
+
+
+<div id="vehicleDetailsModal" class="modal">
+<div class="modal-content">
+  <span class="close">&times;</span>
+  <h2 class="modal-title">Vehicle Details</h2>
+  <div class="modal-body">
+    <p><strong>License Plate Number:</strong> <span id="modal-licensePlateNumber"></span></p>
+    <p><strong>Vehicle Category:</strong> <span id="modal-vehicleCategory"></span></p>
+    <p><strong>Fuel Type:</strong> <span id="modal-fuelType"></span></p>
+    <p><strong>Status:</strong> <span id="modal-status"></span></p>
+    <p><strong>Remarks:</strong> <span id="modal-remarks"></span></p>
+    <p><strong>Assigned Staff ID:</strong>
+      <select id="modal-staffId">
+        <option value="" disabled selected>Select Staff</option>
+      </select>
+    </p>
+  </div>
+  <div class="btn-container">
+      <button class="btn btn-secondary" id="update-vehicle-btn">Update</button>
+      <button class="btn btn-danger ms-2" id="delete-vehicle-btn">Delete</button>
+  </div>
+</div>
+</div>
+
+
+
+    <!-- View-Staff-Modal
+<div id="staff-modal" class="new-view-modal">
+  <div class="new-view-modal-content">
+    <div class="modal-header">
+      <h2>Staff Details</h2>
+      <span class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <div class="details-grid">
+        <div><strong>Name:</strong></div>
+        <div id="name"></div>
+        
+        <div><strong>Designation:</strong></div>
+        <div id="designation"></div>
+        
+        <div><strong>Gender:</strong></div>
+        <div id="gender"></div>
+        
+        <div><strong>Date of Birth:</strong></div>
+        <div id="dob"></div>
+        
+        <div><strong>Address:</strong></div>
+        <div id="address"></div>
+        
+        <div><strong>Email:</strong></div>
+        <div id="email"></div>
+        
+        <div><strong>Contact:</strong></div>
+        <div id="contact"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <div class="pe-2">
+        <button id="update-btn" type="button" class="btn btn-secondary">Update</button>
+      </div>
+      <div>
+        <button id="delete-btn" type="button" class="btn btn-danger">Delete</button>
+      </div>
+      
+    </div>
+  </div>
+</div> -->
+
+
+
+
+
+
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/controller/VehicleController.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
 </body>
 </html>
